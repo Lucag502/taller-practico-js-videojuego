@@ -16,6 +16,10 @@ function startGame() {
     canvas.setAttribute('width', window.innerWidth *0.75);
     canvas.setAttribute('height', window.innerHeight *0.5);
 
+    const elementSize = canvasSize / 10;
+
+    console.log({canvasSize, elementSize});
+
     window.innerHeight;
     window.innerWidth;
     //game.fillRect(0,0,100,100);
