@@ -29,8 +29,26 @@ function startGame() {
     game.font = elementSize + 'px Verdana';
     game.textAlign = 'end';
 
-    for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'], elementSize, elementSize * i);
-    }
+    const map = maps [0];
+    const mapRows = map.trim().split('\n');
+    const mapRowCols = mapRows.map( row => row.trim().split(``));
+    console.log({map, mapRows, mapRowCols});
+
+    mapRowCols.forEach((row, rowI) => {
+        row.forEach((col,colI) => {
+            const emoji = emojis[col];
+            const posX = elementSize * (colI + 1);
+            const posY = elementSize * (rowI + 1);
+            console.log({col, colI, row, rowI});
+            game.fillText(emoji, posX , posY);
+        });
+    })
+
+    // for (let row = 1; row <= 10; row++) {
+    //     for (let col = 1; col <= 10; col) {
+    //         game.fillText(emojis[mapRowCols[row - 1] [col -1]],
+    //             elementSize * col, elementSize * row);
+    //     }
+    // }
 }
 
