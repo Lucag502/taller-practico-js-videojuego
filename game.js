@@ -59,6 +59,9 @@ function startGame() {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
                 }
+            }else if (col == 'I'){
+                giftPosition.x = posX;
+                giftPosition.y = posY;
             }
 
             game.fillText(emoji, posX , posY);
@@ -68,6 +71,14 @@ function startGame() {
 }
 
 function movePlayer(){
+    const giftColissionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+    const giftColissionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftColission = giftColissionX && giftColissionY;
+
+    if (giftColission){
+        console.log("subiste de nivel"); 
+    }
+
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
