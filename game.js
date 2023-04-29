@@ -12,6 +12,11 @@ const playerPosition = {
     y:undefined,
 };
 
+const giftPosition = {
+    x: undefined,
+    y:undefined,
+};
+
 window.addEventListener('load',setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
 
@@ -22,10 +27,10 @@ function setCanvasSize() {
         canvasSize = window.innerHeight * 0.7;
     }
 
-    canvas.setAttribute('width', window.innerWidth *0.4);
-    canvas.setAttribute('height', window.innerHeight *0.67);
+    canvas.setAttribute('width', window.innerWidth *0.33);
+    canvas.setAttribute('height', window.innerHeight *0.7);
 
-    elementSize = canvasSize / 11;
+    elementSize = canvasSize / 10.9;
 
     startGame();
 }
