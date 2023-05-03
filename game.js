@@ -1,21 +1,24 @@
-const btnUp= document.querySelector('#up');
-const btnDown= document.querySelector('#down');
-const btnLeft= document.querySelector('#left');
-const btnRight= document.querySelector('#right');
+const btnUp = document.querySelector('#up');
+const btnDown = document.querySelector('#down');
+const btnLeft = document.querySelector('#left');
+const btnRight = document.querySelector('#right');
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
 
 let canvasSize;
 let elementSize;
+
 const playerPosition = {
-    x:undefined,
-    y:undefined,
+    x: undefined,
+    y: undefined,
 };
 
 const giftPosition = {
     x: undefined,
-    y:undefined,
+    y: undefined,
 };
+
+let enemiesPositions = [];
 
 window.addEventListener('load',setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
@@ -46,6 +49,7 @@ function startGame() {
     const mapRowCols = mapRows.map( row => row.trim().split(``));
     console.log({map, mapRows, mapRowCols});
 
+    enemiesPositions = [];
     game.clearRect(0, 0, canvas.width, canvas.height);
 
     mapRowCols.forEach((row, rowI) => {
@@ -62,6 +66,11 @@ function startGame() {
             }else if (col == 'I'){
                 giftPosition.x = posX;
                 giftPosition.y = posY;
+            } else if (col == 'X'){
+                enemiesPositions.push({
+                   x: posX,
+                   y: posY, 
+                });
             }
 
             game.fillText(emoji, posX , posY);
@@ -78,6 +87,17 @@ function movePlayer(){
     if (giftColission){
         console.log("subiste de nivel"); 
     }
+    
+    const enemyColision = enemiesPositions.find(enemy =>{
+        const enemyColisionX = enemy.x.toFixed(3) == playerPosition.x.toFixed(3);
+        const enemyColisionY = enemy.y.toFixed(3) == playerPosition.y.toFixed(3); 
+
+        return enemyColisionX && enemyColisionY;
+        });
+
+        if (enemyColision) { 
+            console.log("chocaste contra un enemigo");
+        }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
