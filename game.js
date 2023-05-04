@@ -5,12 +5,17 @@ const btnRight = document.querySelector('#right');
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
 const spanLives = document.querySelector('#lives');
+const spanTime = document.querySelector('#time'); 
 
 let canvasSize;
 let elementSize;
 let level = 0;
 let lives = 3;
 
+
+let timeStart;
+let timePlayer;
+let timeInterval;
 
 const playerPosition = {
     x: undefined,
@@ -54,6 +59,11 @@ function startGame() {
         gameWin();
         return;
     };
+
+    if (!timeStart){
+        timeStart = Date.now();
+        timeInterval = setInterval(showTime, 100);
+    }
     
     showLives();
 
@@ -91,6 +101,10 @@ function startGame() {
     movePlayer();
     
 }
+function showTime() {
+    spanTime.innerHTML = Date.now() - timeStart;
+}
+
 function showLives(){
     const livesArray = Array(lives).fill(emojis['HEARTH']);
     spanLives.innerHTML = "";
@@ -132,6 +146,7 @@ function levelFail() {
     playerPosition.y = undefined;
     if (lives <= 0){
         gameOver();
+        timeStart = undefined;
     } else {
 
     startGame();
@@ -140,6 +155,7 @@ function levelFail() {
 
 function gameWin() {
     console.log("Ganaste el juego");
+    clearInterval(timeInterval);
 }
 
 function gameOver() {
