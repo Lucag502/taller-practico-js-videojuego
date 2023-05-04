@@ -4,6 +4,7 @@ const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
+const spanLives = document.querySelector('#lives');
 
 let canvasSize;
 let elementSize;
@@ -53,6 +54,8 @@ function startGame() {
         gameWin();
         return;
     };
+    
+    showLives();
 
     const mapRows = map.trim().split('\n');
     const mapRowCols = mapRows.map( row => row.trim().split(``));
@@ -86,6 +89,12 @@ function startGame() {
         });
     });
     movePlayer();
+    
+}
+function showLives(){
+    const livesArray = Array(lives).fill(emojis['HEARTH']);
+    spanLives.innerHTML = "";
+    livesArray.forEach(hearth => spanLives.append(hearth));
 }
 
 function movePlayer(){
