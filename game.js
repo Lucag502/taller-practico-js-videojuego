@@ -36,16 +36,20 @@ window.addEventListener('resize', setCanvasSize);
 
 function setCanvasSize() {
     if(window.innerHeight >= window.innerWidth){
-        canvasSize = window.innerWidth * 0.4;
+        canvasSize = window.innerWidth * 0.7;
     } else if (window.innerWidth >= window.innerHeight){
         canvasSize = window.innerHeight * 0.7;
     }
 
-    canvas.setAttribute('width', window.innerWidth *0.33);
-    canvas.setAttribute('height', window.innerHeight *0.7);
+    canvasSize = Number(canvasSize = canvasSize.toFixed(0));
+
+    canvas.setAttribute('width', canvasSize);
+    canvas.setAttribute('height', canvasSize);
 
     elementSize = canvasSize / 10.9;
 
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     startGame();
 }
 
@@ -81,7 +85,7 @@ function startGame() {
         row.forEach((col,colI) => {
             const emoji = emojis[col];
             const posX = elementSize * (colI + 1.5);
-            const posY = elementSize * (rowI + 1);
+            const posY = elementSize * (rowI + 1.2);
 
             if (col == 'O') {
                 if(!playerPosition.x && !playerPosition.y){
