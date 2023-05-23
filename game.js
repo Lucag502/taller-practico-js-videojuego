@@ -8,6 +8,9 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time'); 
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result');
+const reset_window = document.querySelector('.reset_window')
+const reset_confirm = document.querySelector('#reset_confirm');
+
 
 let canvasSize;
 let elementSize;
@@ -18,6 +21,7 @@ let lives = 3;
 let timeStart;
 let timePlayer;
 let timeInterval;
+
 
 const playerPosition = {
     x: undefined,
@@ -54,6 +58,8 @@ function setCanvasSize() {
 }
 
 function startGame() {
+    reset_window.classList.add('inactive');
+
     console.log({canvasSize, elementSize});
 
     game.font = elementSize + 'px Verdana';
@@ -148,7 +154,7 @@ function movePlayer(){
 function levelWin(){
     console.log("subiste de nivel");
     level++;
-    startGame();
+    
 }
 
 function levelFail() {
@@ -165,6 +171,7 @@ function levelFail() {
 }
 
 function gameWin() {
+    reset_window.classList.remove('inactive');
     console.log("Ganaste el juego");
     clearInterval(timeInterval);
 
@@ -182,6 +189,9 @@ function gameWin() {
         localStorage.setItem('recordTime', actualTime);
         console.log({recordTime, actualTime});
     }
+
+    
+    reset_confirm.addEventListener('click', resetGame);
 }
 
 function gameOver() {
@@ -189,6 +199,10 @@ function gameOver() {
     level = 0;
     lives = 3;
 }
+
+function resetGame() {
+    location.reload();
+     }
 
 window.addEventListener('keydown', moveByKeys);
 btnUp.addEventListener('click', moveUp);
