@@ -70,8 +70,33 @@ body {
     text-align: center; 
   }
 
+  .gameOver_window{
+      position: absolute;
+      top: 100px;
+      left: 265px;
+      background-color:blue;
+      margin: 50px;
+      padding: 100PX;
+      border-radius: 35px;
+      width: 500px;
+      border-style: groove;
+      border-color:black;
+      text-align: center; 
+  }
+
+  #gameOver_confirm{
+    background-color: #fff;
+    color: black;
+    border-color: blue;
+  }
+
+  #gameOver_denied{
+    background-color: #fff;
+    color: black;
+  }
+
   #reset_message{
-    color:black;
+    color:white;
   }
 
   #reset_confirm{

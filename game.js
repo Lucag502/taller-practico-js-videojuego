@@ -11,6 +11,8 @@ const pResult = document.querySelector('#result');
 const reset_window = document.querySelector('.reset_window')
 const reset_confirm = document.querySelector('#reset_confirm');
 const actualLevel = document.querySelector('#actualLevel');
+const gameOver_window = document.querySelector('.gameOver_window');
+const gameOver_confirm = document.querySelector('#gameOver_confirm');
 
 
 let canvasSize;
@@ -60,7 +62,8 @@ function setCanvasSize() {
 
 function startGame() {
     reset_window.classList.add('inactive');
-    actualLevel.innerHTML = level;
+    gameOver_window.classList.add('inactive');
+    actualLevel.innerHTML = level+1;
 
     console.log({canvasSize, elementSize});
 
@@ -117,7 +120,14 @@ function startGame() {
     
 }
 function showTime() {
+    // actualMoment = Date.now() - timeStart;
+    // const minutes = actualMoment.getMinutes();
+    // const seconds = actualMoment.getSeconds();
+    // const totalTime = minutes + ":" + seconds;
+    // document.spanTime = totalTime;
+    // setTimeout(showTime,1000);
     spanTime.innerHTML = Date.now() - timeStart;
+
 }
 
 function showRecord() {
@@ -156,6 +166,7 @@ function movePlayer(){
 function levelWin(){
     console.log("subiste de nivel");
     level++;
+    startGame();
     
 }
 
@@ -167,7 +178,7 @@ function levelFail() {
         gameOver();
         timeStart = undefined;
     } else {
-
+        
     startGame();
 }
 }
@@ -197,9 +208,11 @@ function gameWin() {
 }
 
 function gameOver() {
+    gameOver_window.classList.remove('inactive');
     console.log("Juego Terminado");
     level = 0;
     lives = 3;
+    gameOver_confirm.addEventListener('click', resetGame);
 }
 
 function resetGame() {
