@@ -1,5 +1,5 @@
 body {
-    background-color: green;
+    background-color: lawngreen;
     color: #fff;  
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
@@ -31,12 +31,14 @@ body {
     flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
+    
   }
   
   button {
-    background-color: #fdef05;
+    color: whitesmoke;
+    background-color: black;
     border-radius: 8px;
-    border-color: #ff6600;
+    border-color: red;
     font-family: inherit;
     margin: 0;
     padding: 5px 20px;

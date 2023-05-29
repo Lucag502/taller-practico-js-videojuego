@@ -10,6 +10,7 @@ const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result');
 const reset_window = document.querySelector('.reset_window')
 const reset_confirm = document.querySelector('#reset_confirm');
+const actualLevel = document.querySelector('#actualLevel');
 
 
 let canvasSize;
@@ -59,6 +60,7 @@ function setCanvasSize() {
 
 function startGame() {
     reset_window.classList.add('inactive');
+    actualLevel.innerHTML = level;
 
     console.log({canvasSize, elementSize});
 
