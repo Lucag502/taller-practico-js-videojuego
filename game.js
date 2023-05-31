@@ -13,6 +13,7 @@ const reset_confirm = document.querySelector('#reset_confirm');
 const actualLevel = document.querySelector('#actualLevel');
 const gameOver_window = document.querySelector('.gameOver_window');
 const gameOver_confirm = document.querySelector('#gameOver_confirm');
+const initWindow = document.querySelector('.init_window');
 
 
 let canvasSize;
@@ -57,12 +58,19 @@ function setCanvasSize() {
 
     playerPosition.x = undefined;
     playerPosition.y = undefined;
+
+    reset_window.classList.add('inactive');
+    gameOver_window.classList.add('inactive');
+
+    startTouch();
     startGame();
 }
 
 function startGame() {
+    initWindow.classList.add('inactive');
     reset_window.classList.add('inactive');
     gameOver_window.classList.add('inactive');
+
     actualLevel.innerHTML = level+1;
 
     console.log({canvasSize, elementSize});
@@ -162,6 +170,16 @@ function movePlayer(){
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
+window.addEventListener('keydown', startTouch);
+
+function startTouch (fTouch) {
+    if (fTouch.code == 'Space'){ 
+    startGame()}else{
+        console.log("ese no es espacio");
+    } 
+}   
+
+
 
 function levelWin(){
     console.log("subiste de nivel");
